@@ -13,7 +13,7 @@ connectDB();
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 //default middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -25,7 +25,11 @@ app.use(cors({
 app.use("/api/v1/user",userRoute);
 app.use("/api/v1/course",courseRoute);
 
+// Health check endpoint
+app.get("/", (req, res) => {
+    res.json({ message: "Server is running", status: "OK" });
+});
 
-app.listen(PORT, () => {
-    console.log(`server listen at port ${PORT}`);
-})
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
+});
