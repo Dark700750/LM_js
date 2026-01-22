@@ -7,15 +7,15 @@ const userSchema =  new mongoose.Schema({
     },
     email:{
         type:String,
-        requuired:true
+        required:true
     },
     password:{
         type:String,
-        required:string
+        required:true
     },
     role:{
-        type:string,
-        count:["instructer","student"],
+        type:String,
+        enum:["instructor","student"],
         default:'student'
     },
     enrolledCourses:[
@@ -23,10 +23,10 @@ const userSchema =  new mongoose.Schema({
     {type:mongoose.Schema.Types.ObjectId,
 ref:'course'}
 ],
-photourl:{
-    type:string,
+photoUrl:{
+    type:String,
     default:""
 }
 },{timestamps:true});
 
-export const User = mongoose.model("User",userSchemma);
+export const User = mongoose.model("User",userSchema);

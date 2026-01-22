@@ -2,9 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import connectDB from "./database/db.js";
-import userRoute from "./routes/user.route.js";
-import courseRoute from "./routes/course.route.js";
+import connectDB from "./server/database/db.js";
+import userRoute from "./server/routes/user.routes.js";
+import courseRoute from "./server/routes/course.routes.js";
 
 dotenv.config({});
 
