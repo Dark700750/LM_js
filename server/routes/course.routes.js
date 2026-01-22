@@ -1,7 +1,7 @@
 import express from "express";
 import isAuthenticated from "../middlewares/isAuthenticated.js";
 import { createCourse, createLecture, editCourse, editLecture, getCourseById, getCourseLecture, getCreatorCourses, getLectureById, getPublishedCourse, removeLecture, searchCourse, togglePublishCourse } from "../controllers/course.controllers.js";
-import upload from "../utils/multer.js";
+import upload from "../utilis/multer.js";
 const router = express.Router();
 
 router.route("/").post(isAuthenticated,createCourse);
