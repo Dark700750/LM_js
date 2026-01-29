@@ -6,30 +6,35 @@ import connectDB from "./server/database/db.js";
 import userRoute from "./server/routes/user.routes.js";
 import courseRoute from "./server/routes/course.routes.js";
 
-dotenv.config({});
+dotenv.config();
 
-//callling database
+// connect database
 connectDB();
 
 const app = express();
-
 const PORT = process.env.PORT || 10000;
-//default middleware
+
+// middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:8080",
-    credentials: true
-}));
-//apis
-app.use("/api/v1/user",userRoute);
-app.use("/api/v1/course",courseRoute);
 
-// Health check endpoint
+app.use(
+  cors({
+    origin: "https://lm-js-16.onrender.com", // frontend URL
+    credentials: true,
+  })
+);
+
+// routes
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/course", courseRoute);
+
+// health check
 app.get("/", (req, res) => {
-    res.json({ message: "Server is running", status: "OK" });
+  res.json({ message: "Server is running", status: "OK" });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
+// listen
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
